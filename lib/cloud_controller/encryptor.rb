@@ -186,6 +186,10 @@ module VCAP::CloudController
           end
           alias_method "#{field_name}_without_encryption=", "#{field_name}="
           alias_method "#{field_name}=", "#{field_name}_with_encryption="
+
+          define_method "before_save" do
+            self.encryption_key_label = Encryptor.current_encryption_key_label unless self.encryption_key_label.present?
+          end
         end
       end
     end

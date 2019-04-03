@@ -179,7 +179,10 @@ buildpacks:
 
 db_encryption_key: "asdfasdfasdf"
 database_encryption:
-  keys: {"encryption_key_0":"asdfasdfasdf"}
+  keys:
+    encryption_key_0: asdfasdfasdf
+    # encryption_key_1: foobar
+    # encryption_key_2: melvin
   current_key_label: "encryption_key_0"
   pbkdf2_hmac_iterations: 2048
 
