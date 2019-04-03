@@ -502,6 +502,13 @@ RSpec.describe AppManifestsController, type: :controller do
       expect(response.headers['Location']).to include "#{link_prefix}/v3/jobs/#{job.guid}"
     end
 
+    context 'when the request body includes a sidecar' do
+      let(:request_body) do
+        { 'sidecars' =>
+          [{ 'process_types' => ['web'], 'command' => 'bundle exec side_car_for_web_only', 'name' => 'my-sidecar' }] }
+      end
+    end
+
     describe 'emitting an audit event' do
       let(:app_event_repository) { instance_double(VCAP::CloudController::Repositories::AppEventRepository) }
       let(:request_body) do
